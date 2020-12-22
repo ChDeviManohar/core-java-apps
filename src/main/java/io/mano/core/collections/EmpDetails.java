@@ -3,6 +3,7 @@ package io.mano.core.collections;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class EmpDetails {
@@ -37,6 +38,22 @@ public class EmpDetails {
 				.thenComparing(Comparator.comparing(Employee::getRole).reversed()));
 
 		printEmployees(employees);
+		System.out.println("-------------------------");
+		
+		System.out.println("-------Managers--------");
+		printEmployees(employees.stream().filter(emp -> "MGR".equalsIgnoreCase(emp.getRole())).collect(Collectors.toList()));
+		System.out.println("-------------------------");
+		
+		System.out.println("-------Dev Team--------");
+		printEmployees(employees.stream().filter(emp -> "SE".equalsIgnoreCase(emp.getRole()) || "LE".equalsIgnoreCase(emp.getRole())).collect(Collectors.toList()));
+		System.out.println("-------------------------");
+		
+		System.out.println("-------QA Team--------");
+		printEmployees(employees.stream().filter(emp -> "QA".equalsIgnoreCase(emp.getRole())).collect(Collectors.toList()));
+		System.out.println("-------------------------");
+		
+		System.out.println("-------SE and Name:Manohar--------");
+		printEmployees(employees.stream().filter(emp -> "SE".equalsIgnoreCase(emp.getRole()) && "Manohar".equalsIgnoreCase(emp.getName())).collect(Collectors.toList()));
 		System.out.println("-------------------------");
 	}
 
