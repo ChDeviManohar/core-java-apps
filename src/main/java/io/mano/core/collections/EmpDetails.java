@@ -55,6 +55,18 @@ public class EmpDetails {
 		System.out.println("-------SE and Name:Manohar--------");
 		printEmployees(employees.stream().filter(emp -> "SE".equalsIgnoreCase(emp.getRole()) && "Manohar".equalsIgnoreCase(emp.getName())).collect(Collectors.toList()));
 		System.out.println("-------------------------");
+		
+		System.out.println("-------Employees Names--------");
+		print(employees.stream().map(Employee::getName).collect(Collectors.toList()));
+		System.out.println("-------------------------");
+		
+		System.out.println("-------Employees Roles--------");
+		print(employees.stream().map(Employee::getRole).distinct().collect(Collectors.toList()));
+		System.out.println("-------------------------");
+	}
+
+	private void print(List<String> empNames) {
+		empNames.forEach(System.out::println);
 	}
 
 	private void printEmployees(List<Employee> employees) {
